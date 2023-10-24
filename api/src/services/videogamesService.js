@@ -3,7 +3,7 @@ const axios = require("axios");
 const { KEY } = require('../config/envs');
 const catchedAsync = require("../utils/catchedAsync");
 
-const APIURL= 'https://api.rawg.io/api/games';
+const APIURL= 'https://api.rawg.io/api/games/';
 
 const getvideoGames = async ()=>{
     
