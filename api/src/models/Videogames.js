@@ -1,14 +1,13 @@
-const { DataTypes } = require('sequelize');
+const {DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   sequelize.define('videogames', {
     
     id:{
       type:DataTypes.UUID,
-      defaultValue: DataTypes.UUIDv4,
+      defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey:true ,
-      
     },
     name: {
       type: DataTypes.STRING,
@@ -18,7 +17,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    plataforms: {
+    platforms: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -32,7 +31,7 @@ module.exports = (sequelize) => {
     },
     rating:{
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: true
     }
 
   },{ timestamps: false });
