@@ -7,7 +7,7 @@ const gamePostController = require('../controllers/gamePostController');
 
 const router = express.Router();
 
-router.get('/gamelist', videogameControllers);
+router.get('/', videogameControllers);
 
 router.get('/game/:id', gameDetailController);
 
