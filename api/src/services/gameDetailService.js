@@ -3,7 +3,7 @@ const axios = require("axios");
 const {Videogames} = require('../db')
 
 const { KEY } = require('../config/envs');
-const catchedAsync = require("../utils/catchedAsync");
+
 const isValidUUID = require("../utils/isValidUUID");
 
 const APIURL= 'https://api.rawg.io/api/games';
