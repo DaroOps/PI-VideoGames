@@ -9,7 +9,7 @@ const getvideoGames = async ()=>{
         const response = await axios(`${APIURL}?key=${KEY}`);
         return response.data;
     } catch (error) {
-        throw new Error(`videogamesService.js has recieved an error in: ${error.message}`);
+        throw new Error(`videogamesService.js has recieved an error: ${error.message}`);
     }
    
 };

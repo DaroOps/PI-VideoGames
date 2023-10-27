@@ -19,4 +19,32 @@ describe('Videogame routes', () => {
       agent.get('/videogames').expect(200)
     );
   });
+  
+  describe(' GET /videogames:id?', () => {
+    it('should get 200', () =>
+      agent.get('/videogames/43').expect(200)
+    );
+  });
+
+  describe('GET /videogames/name?', () => {
+    it('should get 200', () =>
+      agent.get('/videogames/grand?').expect(200)
+    );
+  });
+
+  describe('GET /genres', () => {
+    it('should get 200', () =>
+      agent.get('/genres').expect(200)
+    );
+  });
+  
+  describe('POST /videogames', () => {
+
+    const fullFillObj = createNullObject("");
+    const genres = ["Action", "Puzzles"];
+
+    it('should get 200', () =>
+      agent.post('/videogames').send(fullFillObj, genres).expect(201)
+    );
+  });
 });
