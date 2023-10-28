@@ -7,11 +7,11 @@ const gamePostController = require('../controllers/gamePostController');
 
 const router = express.Router();
 
-router.get('/', videogameControllers);
+router.get('/search', searchGameController);
 
 router.get('/:id', gameDetailController);
 
-router.get('/name?', searchGameController);
+router.get('/' , videogameControllers);
 
 router.post('/', gamePostController);
 

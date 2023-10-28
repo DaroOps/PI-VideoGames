@@ -20,7 +20,7 @@ describe('Videogame routes', () => {
     );
   });
   
-  describe(' GET /videogames:id?', () => {
+  describe(' GET /videogames/:id', () => {
     it('should get 200', () =>
       agent.get('/videogames/43').expect(200)
     );
@@ -28,7 +28,7 @@ describe('Videogame routes', () => {
 
   describe('GET /videogames/name?', () => {
     it('should get 200', () =>
-      agent.get('/videogames/grand?').expect(200)
+      agent.get('/videogames?name=mario').expect(200)
     );
   });
 
