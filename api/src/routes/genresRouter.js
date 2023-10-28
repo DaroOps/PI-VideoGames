@@ -4,6 +4,6 @@ const router = express.Router();
 
 const genresController = require('../controllers/genresControllers');
 
-router.get('/genres', genresController);
+router.get('/', genresController);
 
 module.exports = router;
