@@ -1,8 +1,8 @@
 const { Videogames, Genres, conn } = require('../../src/db.js');
-const { expect, should } = require('chai');
+const { expect} = require('chai');
 const { createNullObject } = require('../utils/createNullObject.js');
 const { getGameGenres } = require('../../src/services/gameGenresService.js');
-const { where } = require('sequelize');
+
 
 const fillObj = createNullObject("");
 
@@ -20,7 +20,7 @@ describe('videogames Database Models\n', () => {
       console.error('Unable to connect to the database:', err);
     }));
 
-  describe('Validators VideoGames Model:\n', () => {
+  describe('Validators Videogames Model:\n', () => {
     beforeEach(() => Videogames.sync({ force: true }));
 
     describe('full fill object', () => {
@@ -77,32 +77,35 @@ describe('videogames Database Models\n', () => {
           .catch(() => done());
       });
     });
-  });
 
-  describe('Validators Genres Model:\n', () => {
-    beforeEach(async () => {
-      await Genres.sync({ force: true });
-    });
-
-    describe('Validate Empty Model on awake \n', () => {
-      it('should be empty when the database is empty for the first time', async () => {
-        const dataInGenres = await Genres.count();
-        expect(dataInGenres).to.equal(0);
+    describe('Validators Genres Model:\n', () => {
+      beforeEach(async () => {
+        await Genres.sync({ force: true });
       });
+  
+      describe('Validate Empty Model on awake \n', () => {
+        it('should be empty when the database is empty for the first time', async () => {
+          const dataInGenres = await Genres.count();
+          expect(dataInGenres).to.equal(0);
+        });
+      });
+  
     });
-
   });
 
+  
+
   describe('Validators Genres Model:\n', () => {
-    beforeEach(async () => {
-    
+    before(async () => {
+        
         await Genres.sync({ force: false });
-     
+        await getGameGenres();
+        
     });
     
-    describe('Validate Filled Model when is empty \n', () => {
+    describe('Validate if is filled when is empty \n', () => {
       it('should be filled when is empty', async () => {
-        await getGameGenres();
+       
         const dataInGenres = await Genres.count();
         expect(dataInGenres).to.equal(19);      
       });

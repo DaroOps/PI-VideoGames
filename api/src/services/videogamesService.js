@@ -6,8 +6,8 @@ const APIURL= 'https://api.rawg.io/api/games';
 
 const getvideoGames = async ()=>{
     try {
-        const response = await axios(`${APIURL}?key=${KEY}`);
-        return response.data;
+        const {data} = await axios(`${APIURL}?key=${KEY}`);  
+        return [data.results];
     } catch (error) {
         throw new Error(`videogamesService.js has recieved an error: ${error.message}`);
     }

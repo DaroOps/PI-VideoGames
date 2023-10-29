@@ -1,5 +1,3 @@
-const axios = require("axios");
-
 const { Videogames, Genres } = require("../db");
 
 const { getGameGenres } = require("./gameGenresService");
