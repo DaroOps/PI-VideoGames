@@ -4,6 +4,7 @@ const app = require('../../src/app.js');
 const { Videogames, conn } = require('../../src/db.js');
 const { createNullObject } = require('../utils/createNullObject.js');
 const isValidUUID = require('../../src/utils/isValidUUID.js');
+const { getGameDetail } = require('../../src/services/gameDetailService.js');
 
 const agent = session(app);
 const videogame = createNullObject("", "BASE TEST CREATE",true);
@@ -45,14 +46,15 @@ describe('Videogame routes', () => {
         });
 
         it('should get the details of a game from the database', async () => {
-            agent.post('/videogames').send(fullFillObj).expect(201);
+          
+           
+            const postRes = await agent.post('/videogames').send(fullFillObj)
 
-            // console.log("RESPONSE2", response2.body)
-
-            const response = await agent.get(`/videogames/22`).expect(200);
+            const response = await agent.get(`/videogames/${postRes.body.id}`).expect(200);
+           
+            expect(isValidUUID(response.body.id)).to.be.true;
             expect(response.body).to.have.property('genres');
             expect(response.body).to.have.property('id');
-            expect(isValidUUID(response.body.id)).to.be.true;
         });
     });
 

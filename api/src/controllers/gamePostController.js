@@ -11,7 +11,7 @@ const gamePostController = catchedAsync(async(req, res)=>{
         return res.status(201).json(postedGame)
     }
     else{
-        return res.status(401).json({message:"can't post videogame"})
+        return res.status(401).send(new Error({message:"can't post videogame"}))
     }
 });
 

@@ -12,9 +12,14 @@ const getGameDetail = async (id) => {
     const isUUID = isValidUUID(id);
     try {
         if (isUUID) {
-            const videogames = await Videogames.findOne({ where: { id: id } });
-
-            return videogames;
+            const videogame = await Videogames.findOne({ where: { id: id } });
+            const gamegenres = await videogame.getGenres();
+        
+            const genreNames = gamegenres.map(genre => genre.name);
+        
+            const videogameWithGenres = { ...videogame.dataValues, genres: genreNames };
+        
+            return videogameWithGenres;
         }
 
         const response = await axios(`${APIURL}/${id}?key=${KEY}`);
