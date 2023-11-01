@@ -1,0 +1,12 @@
+.rating-counter-margin{
+    margin-left: 2.5%;
+}
+.count-value{
+    color: black;
+    white-space: pre;
+    background-color: aliceblue;
+    border-radius: 2em;
+    margin: 0;
+    padding: 0;
+}
+

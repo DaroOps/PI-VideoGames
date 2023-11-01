@@ -1,0 +1,8 @@
+.auxiliar-nav-bar{
+    
+    left: 0;
+    background-color: antiquewhite;
+    height: 100em;
+    width: 90px;
+    content: '';
+}

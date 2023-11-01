@@ -1,0 +1,9 @@
+.games-container-flex{
+    background: #6b6b6b; 
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: baseline;
+	align-content: stretch;
+};

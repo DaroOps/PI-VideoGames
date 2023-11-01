@@ -1,7 +1,8 @@
-import GamesContainer from "../../components/NavBar/GamesContainer/GamesContainer";
+import GamesContainer from "../../components/GamesContainer/GamesContainer";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { getGames } from "../../redux/actions/actions";
+
 const Home = () => {
 
     const dispatch = useDispatch();
@@ -11,11 +12,7 @@ const Home = () => {
     },[])
      
     return (
-        <div>
-
-            <p>Home</p>
             <GamesContainer/>
-        </div>
     );
 }
 
