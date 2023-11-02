@@ -1,0 +1,31 @@
+/* .input-label {
+    position: relative;
+}
+.input-input{
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 5px;
+}
+
+.input-label .input-input + span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+  }
+
+.label .input:placeholder-shown + span {
+    top: 15px;
+    font-size: 0.9em;
+} */
+.input-error p{
+    contain: "";
+    color: red;
+    margin: 0;
+    padding: 0;
+}
