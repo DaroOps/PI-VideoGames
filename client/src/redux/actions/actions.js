@@ -1,8 +1,8 @@
-import { GET_GAMES } from './types'
+import { GET_GAMES, GET_GENRES } from './types'
 import axios from 'axios'
 
 
- const getGames = () => {
+const getGames = () => {
    const endpoint = 'http://localhost:3001/videogames';
    
    return  async (dispatch) => {
@@ -18,9 +18,26 @@ import axios from 'axios'
    };
 };
 
+const getGenres = () => {
+   const endpoint = 'http://localhost:3001/genres';
+   
+   return  async (dispatch) => {
+      try {
+         const {data} = await axios.get(endpoint);
+         const names = data.map(item => item.name);
+         return dispatch({
+            type: GET_GENRES,
+            payload: names,
+         });
+      } catch (error) {
+         throw Error(error.message);
+      }
+   };
+};
+
 
 
 
 export {
-    getGames   
+    getGames, getGenres
 }

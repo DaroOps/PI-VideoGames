@@ -9,6 +9,7 @@ const Home = () => {
 
     useEffect(()=>{
         dispatch(getGames());
+       
     },[])
      
     return (

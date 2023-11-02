@@ -1,8 +1,8 @@
 import Detail from './Detail/Detail';
-import Form  from './Form/Form';
+import Post  from './Post/Post';
 import Home from './Home/Home';
 import Landing from './Landing/Landing';
 
 export {
-    Detail,Form,Landing,Home
+    Detail,Post,Landing,Home
 }

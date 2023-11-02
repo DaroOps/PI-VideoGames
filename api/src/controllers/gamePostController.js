@@ -6,12 +6,12 @@ const gamePostController = catchedAsync(async(req, res)=>{
 
     const postedGame = await postGame(name, description, platforms, image, releasedate, genres);
    
-    if(postedGame){
+    if(postedGame && Object.keys(postedGame).length > 0){
 
         return res.status(201).json(postedGame)
     }
     else{
-        return res.status(401).send(new Error({message:"can't post videogame"}))
+        return res.status(400).json({message:"can't post videogame"})
     }
 });
 

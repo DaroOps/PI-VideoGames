@@ -28,8 +28,8 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 const { Videogames, Genres } = sequelize.models;
 
-Videogames.belongsToMany(Genres, {through: 'videoGameGenres'});
-Genres.belongsToMany(Videogames, {through: 'videoGameGenres'});
+Videogames.belongsToMany(Genres, {through: 'videoGameGenres',timestamps: false});
+Genres.belongsToMany(Videogames, {through: 'videoGameGenres',timestamps: false});
 
 module.exports = {
   ...sequelize.models, 

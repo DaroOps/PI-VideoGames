@@ -1,3 +1,4 @@
 const GET_GAMES = "GET_GAMES"
+const GET_GENRES = "GET_GENRES"
 
-export {GET_GAMES};
+export {GET_GAMES, GET_GENRES};

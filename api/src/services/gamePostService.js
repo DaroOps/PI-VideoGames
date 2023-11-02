@@ -28,7 +28,7 @@ const postGame = async (name, description, platforms, image, releasedate, genres
         return newVideoGame;
 
     } catch (error) {
-        return new Error(error.message );
+        return Error(error.message );
     }
 };
 

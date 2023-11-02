@@ -26,11 +26,11 @@ module.exports = (sequelize) => {
       allowNull:false
     },
     releasedate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
       allowNull:false,
     },
     rating:{
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: true
     }
 
