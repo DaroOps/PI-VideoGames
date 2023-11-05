@@ -4,9 +4,9 @@ const { KEY } = require('../config/envs');
 
 const APIURL= 'https://api.rawg.io/api/games';
 
-const getvideoGames = async ()=>{
+const getvideoGames = async (page = 1)=>{
     try {
-        const {data} = await axios(`${APIURL}?key=${KEY}`);  
+        const {data} = await axios(`${APIURL}?key=${KEY}&page=${page}`);  
         return data.results;
     } catch (error) {
         throw new Error(`videogamesService.js has recieved an error: ${error.message}`);

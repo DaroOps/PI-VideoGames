@@ -1,8 +1,9 @@
-import { GET_GAMES, GET_GENRES } from '../actions/types';
+import { SET_PAGE, GET_GAMES, GET_GENRES } from '../actions/types';
 
 const initialState = {
     games: [],
-    genres: []
+    genres: [],
+    page: 1,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,6 +18,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 genres: action.payload
+            };
+        case SET_PAGE:
+            return {
+                ...state,
+                page: action.payload
             };
 
         default:

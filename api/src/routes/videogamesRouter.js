@@ -13,6 +13,9 @@ router.get('/:id', gameDetailController);
 
 router.get('/' , videogameControllers);
 
+router.get('/page/:page' , videogameControllers);
+
+
 router.post('/', gamePostController);
 
 module.exports = router;

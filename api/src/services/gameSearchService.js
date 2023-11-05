@@ -3,7 +3,7 @@ const {Videogames} = require('../db')
 const { KEY } = require('../config/envs');
 
 const APIURL= 'https://api.rawg.io/api/games';
-;
+
 const getSearchedGame = async (query)=>{
     console.log(query);
     try {

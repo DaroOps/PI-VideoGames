@@ -1,20 +1,32 @@
-import React, { useState } from 'react';
-import generateUUID from '../../utils/generateUUID,js';
+import React, { useEffect, useState } from 'react';
+import generateUUID from '../../utils/generateUUID';
 import './PageSelector.modules.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPage } from '../../redux/actions/actions';
 
 const PageSelector = () => {
     const firstPage = 1;
-    const lastPage = 69;
+    const lastPage = Math.ceil(857351/20);
     const pageSize = 5;
 
-    const [actual, setActual] = useState(1);
+    const dispatch = useDispatch();
+
+   
+    const actualStorage = useSelector(state => state.page);
+
+
+    const [actual, setActual] = useState(actualStorage);
 
     const handlePageChange = (newPage) => {
         if (newPage >= firstPage && newPage <= lastPage) {
+           
             setActual(newPage);
         }
     };
 
+    useEffect(()=>{
+        dispatch(setPage(actual));
+    },[actual])
     
 
     const renderPageButton = (page) => {

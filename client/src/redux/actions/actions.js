@@ -1,13 +1,13 @@
-import { GET_GAMES, GET_GENRES } from './types'
+import { SET_PAGE, GET_GAMES, GET_GENRES } from './types'
 import axios from 'axios'
 
 
-const getGames = () => {
-   const endpoint = 'http://localhost:3001/videogames';
-   
-   return  async (dispatch) => {
+const getGames = (page = 1) => {
+   const endpoint = `http://localhost:3001/videogames/page/${page}`;
+
+   return async (dispatch) => {
       try {
-         const {data} = await axios.get(endpoint);
+         const { data } = await axios.get(endpoint);
          return dispatch({
             type: GET_GAMES,
             payload: data,
@@ -20,10 +20,10 @@ const getGames = () => {
 
 const getGenres = () => {
    const endpoint = 'http://localhost:3001/genres';
-   
-   return  async (dispatch) => {
+
+   return async (dispatch) => {
       try {
-         const {data} = await axios.get(endpoint);
+         const { data } = await axios.get(endpoint);
          const names = data.map(item => item.name);
          return dispatch({
             type: GET_GENRES,
@@ -35,9 +35,19 @@ const getGenres = () => {
    };
 };
 
+const setPage = (page) => {
+   return async (dispatch)=>{
+      return dispatch({
+         type: SET_PAGE,
+         payload: page
+
+      });
+   };
+}
+
 
 
 
 export {
-    getGames, getGenres
+   getGames, getGenres, setPage
 }
