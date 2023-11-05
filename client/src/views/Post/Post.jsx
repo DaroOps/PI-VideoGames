@@ -6,12 +6,14 @@ import { useEffect } from "react";
 const Post = () => {
      const dispatch = useDispatch();
 
-    useEffect(()=>{
-        dispatch(getGenres());
-    },[])
+     useEffect(() => {
+          dispatch(getGenres());
+     }, [])
 
      return (
-          <Form/>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+               <Form />
+          </div>
      );
 }
 

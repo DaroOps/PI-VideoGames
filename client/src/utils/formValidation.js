@@ -7,10 +7,9 @@ const formValidation = (form) => {
     }
 
     if (
-        !/^(.*\.(jpg|jpeg|png))$|^(?=.+)([1-9]\d{0,7}|100000000)$/.test(form.image)
+        !/^https?:\/\/.*\.(jpg|jpeg|png)$/i.test(form.image)
     ) {
-        errors.image =
-            "Image must be jpg, jpeg, or png and should not exceed 100MB.";
+        errors.image = "Please enter a valid image URL (jpg, jpeg, or png).";
     }
 
     if (!/^.{1,255}$/.test(form.description)) {

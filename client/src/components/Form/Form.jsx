@@ -7,6 +7,9 @@ import './Form.modules.css'
 import InputRating from "../InputRating/InputRating";
 import axios from "axios";
 import TagCheckBox from "../TagCheckBox/TagCheckBox";
+import InputArea from "../InputArea/InputArea";
+
+import Game from '../Game/Game';
 
 const Form = () => {
 
@@ -63,41 +66,62 @@ const Form = () => {
     };
 
     return (
-        <form className=".form" onSubmit={submitHandler}>
-            <div className="form-input-field">
 
-                <InputField
-                    label="Name"
-                    type="text"
-                    name="name"
-                    value={form.name}
-                    onChange={changeHandler}
-                    error={errors.name}
-                />
-                <InputField
-                    label="Description"
-                    type="text"
-                    name="description"
-                    value={form.description}
-                    onChange={changeHandler}
-                    error={errors.description}
-                />
-                <InputField
-                    label="Image"
-                    type="file"
-                    name="image"
-                    value={form.image}
-                    onChange={changeHandler}
-                    error={errors.image}
-                />
-                <InputField
-                    label="Release Date"
-                    type="date"
-                    name="releasedate"
-                    value={form.releasedate}
-                    onChange={changeHandler}
-                    error={errors.releaseDate}
-                />
+
+        <form className="form" onSubmit={submitHandler}>
+            <div className="form-input-field">
+                <div className="header-field">
+                    <div className="preview-fields">
+                        <div className="fields">
+                            <InputField
+                                label="Name"
+                                type="text"
+                                name="name"
+                                value={form.name}
+                                onChange={changeHandler}
+                                error={errors.name}
+                            />
+                            <InputArea
+                                label="Description"
+                                type="text"
+                                name="description"
+                                value={form.description}
+                                onChange={changeHandler}
+                                error={errors.description}
+                            />
+                            <InputField
+                                label="Image Link"
+                                type="text"
+                                name="image"
+                                value={form.image}
+                                onChange={changeHandler}
+                                error={errors.image}
+                            />
+                            <InputField
+
+                                label="Release Date"
+                                type="date"
+                                name="releasedate"
+                                value={form.releasedate}
+                                onChange={changeHandler}
+                                error={errors.releaseDate}
+                            />
+                        </div>
+
+                    </div>
+                    <div className="preview">
+
+                        <Game
+                            name={form.name}
+                            image={form.image}
+
+
+                        />
+
+
+                    </div>
+                </div>
+
                 <div className="form-rating">
 
                     <InputRating
@@ -119,7 +143,6 @@ const Form = () => {
                             />);
                         })
                     }
-
                 </div>
             </div>
 
@@ -133,10 +156,14 @@ const Form = () => {
             />
 
             {console.log('errors', errors)}
-            <button type="Submit" disabled={Object.keys(errors).length > 0}>
-                Post
+            <button className="fancy" type="Submit" disabled={Object.keys(errors).length > 0}>
+                <span className="top-key"></span>
+                <span className="text-post">Create Videogame</span>
+                <span className="bottom-key-1"></span>
+                <span className="bottom-key-2"></span>
             </button>
         </form>
+
 
     );
 };
@@ -145,37 +172,3 @@ export default Form;
 
 
 
-// <form class="form">
-//     <div class="flex">
-//         <label>
-//             <input required="" placeholder="" type="text" class="input"/>
-//                 <span>first name</span>
-//         </label>
-
-//         <label>
-//             <input required="" placeholder="" type="text" class="input"/>
-//                 <span>last name</span>
-//         </label>
-//     </div>
-
-//     <label>
-//         <input required="" placeholder="" type="email" class="input"/>
-//             <span>span</span>
-//     </label>
-
-//     <label>
-//         <input required="" type="tel" placeholder="" class="input"/>
-//             <span>contact number</span>
-//     </label>
-//     <label>
-//         <textarea required="" rows="3" placeholder="" class="input01"></textarea>
-//         <span>message</span>
-//     </label>
-
-//     <button class="fancy" href="#">
-//         <span class="top-key"></span>
-//         <span class="text">submit</span>
-//         <span class="bottom-key-1"></span>
-//         <span class="bottom-key-2"></span>
-//     </button>
-// </form>

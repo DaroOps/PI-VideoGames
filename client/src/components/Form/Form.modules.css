@@ -1,96 +1,44 @@
-.form {
-    margin: 0;
-}
-.form-input-field{
-    background-color: black;
-}
-.message {
-    color: rgba(88, 87, 87, 0.822);
-    font-size: 14px;
+
+.form{
+background-color: rgb(15, 35, 124);
+content: '';
+width: 80%;
 }
 
-.tag-flex {
+.header-field{
+    display:  flex;
+    justify-content: space-evenly;
+    
+}
+
+.preview{
     display: flex;
-    width: 50%;
-    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.preview-fields{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
    
+    
 }
-.form-rating{
+
+.fields{
+    width: 200%;
+}
+
+
+.tag-flex{
+  
     display: flex;
-
+	flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-.form label {
-    position: relative;
-}
-
-.form label .input {
-    width: 100%;
-    padding: 10px 10px 20px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 5px;
-}
-
-.form label .input+span {
-    position: absolute;
-    left: 10px;
-    top: 15px;
-    color: grey;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-}
-
-.form label .input:placeholder-shown+span {
-    top: 15px;
-    font-size: 0.9em;
-}
-
-.form label .input:focus+span,
-.form label .input:valid+span {
-    top: 30px;
-    font-size: 0.7em;
-    font-weight: 600;
-}
-
-.form label .input:valid+span {
-    color: green;
-}
-
-.input01 {
-    width: 100%;
-    padding: 10px 10px 20px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 5px;
-}
-
-.form label .input01+span {
-    position: absolute;
-    left: 10px;
-    top: 50px;
-    color: grey;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-}
-
-.form label .input01:placeholder-shown+span {
-    top: 40px;
-    font-size: 0.9em;
-}
-
-.form label .input01:focus+span,
-.form label .input01:valid+span {
-    top: 50px;
-    font-size: 0.7em;
-    font-weight: 600;
-}
-
-.form label .input01:valid+span {
-    color: green;
-}
 
 .fancy {
     background-color: transparent;
@@ -98,13 +46,11 @@
     border-radius: 0px;
     box-sizing: border-box;
     color: #fff;
-    cursor: pointer;
-    display: inline-block;
     font-weight: 390;
     letter-spacing: 2px;
     margin: 0;
     outline: none;
-    overflow: visible;
+   
     padding: 8px 30px;
     position: relative;
     text-align: center;
@@ -113,9 +59,10 @@
     transition: all 0.3s ease-in-out;
     user-select: none;
     font-size: 13px;
-}
-
-.fancy::before {
+    
+  }
+  
+  .fancy::before {
     content: " ";
     width: 1.7rem;
     height: 2px;
@@ -127,9 +74,9 @@
     transform: translateX(230%);
     transform-origin: center;
     transition: background 0.3s linear, width 0.3s linear;
-}
-
-.fancy .text {
+  }
+  
+  .fancy .text-post {
     font-size: 1.125em;
     line-height: 1.33333em;
     padding-left: 2em;
@@ -140,9 +87,9 @@
     text-decoration: none;
     color: #818181;
     transform: translateX(30%);
-}
-
-.fancy .top-key {
+  }
+  
+  .fancy .top-key {
     height: 2px;
     width: 1.5625rem;
     top: -2px;
@@ -150,9 +97,9 @@
     position: absolute;
     background: white;
     transition: width 0.5s ease-out, left 0.3s ease-out;
-}
-
-.fancy .bottom-key-1 {
+  }
+  
+  .fancy .bottom-key-1 {
     height: 2px;
     width: 1.5625rem;
     right: 1.875rem;
@@ -160,9 +107,9 @@
     position: absolute;
     background: white;
     transition: width 0.5s ease-out, right 0.3s ease-out;
-}
-
-.fancy .bottom-key-2 {
+  }
+  
+  .fancy .bottom-key-2 {
     height: 2px;
     width: 0.625rem;
     right: 0.625rem;
@@ -170,30 +117,30 @@
     position: absolute;
     background: white;
     transition: width 0.5s ease-out, right 0.3s ease-out;
-}
-
-.fancy:hover {
+  }
+  
+  .fancy:hover {
     color: white;
     background: #cacaca;
-}
-
-.fancy:hover::before {
+  }
+  
+  .fancy:hover::before {
     width: 1.5rem;
     background: white;
-}
-
-.fancy:hover .text {
+  }
+  
+  .fancy:hover .text-post {
     color: white;
     padding-left: 1.5em;
-}
-
-.fancy:hover .top-key {
+  }
+  
+  .fancy:hover .top-key {
     left: -2px;
     width: 0px;
-}
-
-.fancy:hover .bottom-key-1,
-.fancy:hover .bottom-key-2 {
+  }
+  
+  .fancy:hover .bottom-key-1,
+   .fancy:hover .bottom-key-2 {
     right: 0;
     width: 0;
-}
+  }

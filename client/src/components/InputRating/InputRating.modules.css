@@ -1,5 +1,7 @@
 .input-rating {
+  padding: 20px;
     display: flex;
+    justify-content: center;
     flex-direction: row-reverse;
     gap: 0.3rem;
     --stroke: #666;
