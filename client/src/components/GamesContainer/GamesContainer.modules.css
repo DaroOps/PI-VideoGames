@@ -1,3 +1,7 @@
+.master-card-container{
+	display: flex;
+	flex-direction: row;
+}
 .games-container-flex{
     background: #6b6b6b; 
     display: flex;
@@ -5,5 +9,7 @@
 	flex-wrap: wrap;
 	justify-content: space-evenly;
 	align-items: baseline;
-	align-content: stretch;
+	
 };
+
+

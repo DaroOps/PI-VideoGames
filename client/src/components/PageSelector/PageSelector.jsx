@@ -4,9 +4,9 @@ import './PageSelector.modules.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPage } from '../../redux/actions/actions';
 
-const PageSelector = () => {
+const PageSelector = ({totalOfElements = 857351}) => {
     const firstPage = 1;
-    const lastPage = Math.ceil(857351/20);
+    const lastPage = Math.ceil(totalOfElements/20)
     const pageSize = 5;
 
     const dispatch = useDispatch();

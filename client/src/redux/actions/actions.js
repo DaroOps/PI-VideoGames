@@ -1,4 +1,4 @@
-import { SET_PAGE, GET_GAMES, GET_GENRES } from './types'
+import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH } from './types'
 import axios from 'axios'
 
 
@@ -36,7 +36,7 @@ const getGenres = () => {
 };
 
 const setPage = (page) => {
-   return async (dispatch)=>{
+   return async (dispatch) => {
       return dispatch({
          type: SET_PAGE,
          payload: page
@@ -45,9 +45,50 @@ const setPage = (page) => {
    };
 }
 
+const setFilters = (genders) => {
+   return (dispatch) => {
+      return dispatch({
+         type: FILTER,
+         payload: genders
+      });
+   }
+}
 
+const order = (order) => {
+   return {
+      type: ORDER,
+      payload: order
+   }
+}
+const orderRating = (rating) => {
+   return {
+      type: ORDER_RATING,
+      payload: rating
+   }
+}
+
+const selectOrigin = (origin) => {
+   return {
+      type: ORIGIN,
+      payload: origin
+   }
+}
+
+const searchGame = (game) => {
+   return {
+      type: SEARCH,
+      payload: game
+   }
+}
 
 
 export {
-   getGames, getGenres, setPage
+   getGames,
+   getGenres,
+   setPage,
+   setFilters,
+   order,
+   orderRating,
+   selectOrigin,
+   searchGame
 }

@@ -31,9 +31,10 @@ const Form = () => {
     const changeHandler = (event) => {
         const property = event.target.name;
         const value = event.target.value;
-
+        
+        
+        
         let updatedForm = { ...form };
-
 
         if (property === 'genres') {
 
@@ -47,9 +48,6 @@ const Form = () => {
         else {
             updatedForm = { ...form, [property]: value };
         }
-
-        // console.log(updatedForm.genres);
-        // console.log(form.genres);
 
         const validationErrors = formValidation(updatedForm);
         setForm(updatedForm);
@@ -110,15 +108,10 @@ const Form = () => {
 
                     </div>
                     <div className="preview">
-
                         <Game
                             name={form.name}
                             image={form.image}
-
-
                         />
-
-
                     </div>
                 </div>
 

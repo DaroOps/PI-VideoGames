@@ -1,8 +1,12 @@
-.auxiliar-nav-bar{
+.filter-menu{
     
     left: 0;
     background-color: antiquewhite;
     height: 100em;
-    width: 90px;
+    width: 100%;
     content: '';
+
+    display: flex;
+    flex-direction: column;
+
 }
