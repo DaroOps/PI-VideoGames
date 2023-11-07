@@ -1,16 +1,25 @@
-import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH } from './types'
+import flattenArray from '../../utils/flattenArray';
+import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH , INCREASE_TARGET_PAGE} from './types'
 import axios from 'axios'
 
 
-const getGames = (page = 1) => {
-   const endpoint = `http://localhost:3001/videogames/page/${page}`;
+const getGames = (page , target = 10, games=[]) => {
+   const endpoint = `http://localhost:3001/videogames/page/`;
+
+   let stackGames = [...games];
 
    return async (dispatch) => {
       try {
-         const { data } = await axios.get(endpoint);
+         for (let i = page; i <= target; i++) {
+            const { data } = await axios.get(endpoint + i);
+            stackGames.push(data);
+         }
+
+         const response = flattenArray(stackGames)
+
          return dispatch({
             type: GET_GAMES,
-            payload: data,
+            payload: response,
          });
       } catch (error) {
          throw Error(error.message);
@@ -75,10 +84,19 @@ const selectOrigin = (origin) => {
 }
 
 const searchGame = (game) => {
-   return {
+   return async (dispatch) => {
+      return dispatch({
       type: SEARCH,
       payload: game
+      })
    }
+}
+
+const increaseTargetPage = () =>{
+   return async (dispatch) => {
+   return dispatch({
+      type: INCREASE_TARGET_PAGE,
+   });}
 }
 
 
@@ -90,5 +108,6 @@ export {
    order,
    orderRating,
    selectOrigin,
-   searchGame
+   searchGame,
+   increaseTargetPage
 }

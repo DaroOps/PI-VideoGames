@@ -1,9 +1,10 @@
-import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH } from '../actions/types';
+import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH, INCREASE_TARGET_PAGE } from '../actions/types';
 
 const initialState = {
     games: [],
     filtered: [],
     genres: [],
+    targetPage: 10,
     page: 1,
     sortOrder: 'asc',    // Orden inicial (ascendente o descendente)
     orderRating: false,
@@ -67,7 +68,11 @@ const reducer = (state = initialState, action) => {
                 filtered: searchResult,
                 searchQuery: action.payload,
             };
-
+        case INCREASE_TARGET_PAGE:
+            return {
+                ...state,
+                 targetPage: state.targetPage+10
+            }
         default:
             return { ...state }
     }

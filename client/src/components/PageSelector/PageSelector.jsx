@@ -5,10 +5,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setPage } from '../../redux/actions/actions';
 
 const PageSelector = ({totalOfElements = 857351}) => {
+    const maximumAdmited = Math.ceil(857351/20);
     const firstPage = 1;
     const lastPage = Math.ceil(totalOfElements/20)
     const pageSize = 5;
-
+    
     const dispatch = useDispatch();
 
    
@@ -96,7 +97,7 @@ const PageSelector = ({totalOfElements = 857351}) => {
                 <li>
                     <button
                         name="next"
-                        className={`next ${actual === lastPage ? 'disabled' : ''}`}
+                        className={`next ${actual === maximumAdmited ? 'disabled' : ''}`}
                         title="next page"
                         onClick={() => handlePageChange(actual + 1)}
                     >
