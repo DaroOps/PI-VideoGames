@@ -1,31 +1,37 @@
 import flattenArray from '../../utils/flattenArray';
-import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH , INCREASE_TARGET_PAGE} from './types'
+import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH, INCREASE_TARGET_PAGE } from './types'
 import axios from 'axios'
 
 
-const getGames = (page , target = 10, games=[]) => {
+const getGames = (page, target = 10, games = []) => {
    const endpoint = `http://localhost:3001/videogames/page/`;
 
    let stackGames = [...games];
 
    return async (dispatch) => {
       try {
+         const requests = [];
          for (let i = page; i <= target; i++) {
-            const { data } = await axios.get(endpoint + i);
-            stackGames.push(data);
+            requests.push(axios.get(endpoint + i));
          }
 
-         const response = flattenArray(stackGames)
+         const responses = await Promise.all(requests);
+
+         stackGames = responses.map((response) => response.data); // Mapear las respuestas a los datos.
+
+         stackGames = flattenArray(stackGames);
+
 
          return dispatch({
             type: GET_GAMES,
-            payload: response,
+            payload: stackGames,
          });
       } catch (error) {
          throw Error(error.message);
       }
    };
 };
+
 
 const getGenres = () => {
    const endpoint = 'http://localhost:3001/genres';
@@ -34,7 +40,8 @@ const getGenres = () => {
       try {
          const { data } = await axios.get(endpoint);
          const names = data.map(item => item.name);
-         return dispatch({
+
+         dispatch({
             type: GET_GENRES,
             payload: names,
          });
@@ -43,6 +50,7 @@ const getGenres = () => {
       }
    };
 };
+
 
 const setPage = (page) => {
    return async (dispatch) => {
@@ -77,6 +85,7 @@ const orderRating = (rating) => {
 }
 
 const selectOrigin = (origin) => {
+
    return {
       type: ORIGIN,
       payload: origin
@@ -84,20 +93,38 @@ const selectOrigin = (origin) => {
 }
 
 const searchGame = (game) => {
+   const endpoint = `http://localhost:3001/videogames/search?name=`;
+
+   return async (dispatch) => {
+      try {
+         if (!game) {
+            dispatch({
+               type: SEARCH,
+               payload: []
+            });
+         } else {
+            const { data } = await axios.get(endpoint + game);
+            dispatch({
+               type: SEARCH,
+               payload: data
+            });
+         }
+      } catch (error) {
+         throw Error(error.message);
+      }
+   };
+};
+
+
+const increaseTargetPage = () => {
    return async (dispatch) => {
       return dispatch({
-      type: SEARCH,
-      payload: game
-      })
+         type: INCREASE_TARGET_PAGE,
+      });
    }
 }
 
-const increaseTargetPage = () =>{
-   return async (dispatch) => {
-   return dispatch({
-      type: INCREASE_TARGET_PAGE,
-   });}
-}
+
 
 
 export {

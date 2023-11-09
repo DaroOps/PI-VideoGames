@@ -4,8 +4,8 @@ import './PageSelector.modules.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPage } from '../../redux/actions/actions';
 
-const PageSelector = ({totalOfElements = 857351}) => {
-    const maximumAdmited = Math.ceil(857351/20);
+const PageSelector = ({totalOfElements = 857351, maximumAdmited = 857351}) => {
+    const maxAdmited = Math.ceil(maximumAdmited/20);
     const firstPage = 1;
     const lastPage = Math.ceil(totalOfElements/20)
     const pageSize = 5;
@@ -57,6 +57,11 @@ const PageSelector = ({totalOfElements = 857351}) => {
 
         for (let i = 1; i <= pageSize; i++) {
             const page = start + i - 1;
+            
+            if(firstPage===lastPage ){
+                pages.push(firstPage);
+                break;
+            }
 
             if (i === 1) {
                 pages.push(firstPage);
@@ -97,7 +102,7 @@ const PageSelector = ({totalOfElements = 857351}) => {
                 <li>
                     <button
                         name="next"
-                        className={`next ${actual === maximumAdmited ? 'disabled' : ''}`}
+                        className={`next ${actual === maxAdmited ? 'disabled' : ''}`}
                         title="next page"
                         onClick={() => handlePageChange(actual + 1)}
                     >

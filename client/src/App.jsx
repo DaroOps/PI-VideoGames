@@ -13,7 +13,7 @@ function App() {
       <Routes>
         <Route exact path='/' Component={Landing}/>
         <Route path='/home' Component={Home}/>
-        <Route path='/detail' Component={Detail}/>
+        <Route path='/detail/:id' Component={Detail}/>
         <Route path='/form' Component={Post}/>
         
       </Routes>

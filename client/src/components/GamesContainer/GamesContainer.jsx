@@ -28,7 +28,7 @@ const GamesContainer = ({ page , games}) => {
                         rating={game.rating}
                         ratingCount={game.ratings_count}
                         esbr={game.esrb_rating?.name}
-                        released={game.tba?'tba':game.released.split('-')[0]}
+                        released={game.tba?'tba':game.released}
                     />);
                 })}
             </div>

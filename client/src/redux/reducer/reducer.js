@@ -2,6 +2,7 @@ import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, S
 
 const initialState = {
     games: [],
+    search:[],
     filtered: [],
     genres: [],
     targetPage: 10,
@@ -9,7 +10,6 @@ const initialState = {
     sortOrder: 'asc',    // Orden inicial (ascendente o descendente)
     orderRating: false,
     selectedOrigin: null,
-    searchQuery: '',
 };
 
 const reducer = (state = initialState, action) => {
@@ -31,12 +31,15 @@ const reducer = (state = initialState, action) => {
                 page: action.payload
             };
         case FILTER:
+            const targetArray = state.filtered.length > 0 ? state.search.length>0? state.search:state.games : state.games;
+
             const filterByGenres = action.payload.length > 0
-                ? state.games.filter((game) => {
+                ? targetArray.filter((game) => {
                     const gameGenres = game.genres.map((genre) => genre.name);
                     return action.payload.some((selectedGenre) => gameGenres.includes(selectedGenre));
                 })
-                : state.games;
+                : targetArray;
+
             return {
                 ...state,
                 filtered: filterByGenres,
@@ -60,18 +63,15 @@ const reducer = (state = initialState, action) => {
                 selectedOrigin: action.payload,
             };
         case SEARCH:
-            const searchResult = state.games.filter((game) =>
-                game.name.toLowerCase().includes(action.payload.toLowerCase())
-            );
             return {
                 ...state,
-                filtered: searchResult,
-                searchQuery: action.payload,
+                search: action.payload,
+
             };
         case INCREASE_TARGET_PAGE:
             return {
                 ...state,
-                 targetPage: state.targetPage+10
+                targetPage: state.targetPage + 10
             }
         default:
             return { ...state }
