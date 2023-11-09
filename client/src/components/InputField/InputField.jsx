@@ -1,9 +1,7 @@
 import './InputField.modules.css';
 
 const InputField = ({ label, type, name, value, error, onChange }) => {
-  const validValue = !value ? 'empty' : error ? 'invalid' : 'valid';
-
-
+  const validValue = value=='' && error==null? 'empty' : value=='' || error? 'invalid' : 'valid';
 
   const handleFocus = (event) => {
     if (type === 'date') {
@@ -23,7 +21,7 @@ const InputField = ({ label, type, name, value, error, onChange }) => {
     }
     event.target.type = 'text';
   }
-
+  
   return (
     <div className="input-field">
       <label htmlFor={name}>

@@ -18,12 +18,14 @@ const getGameDetail = async (id) => {
             const genreNames = gamegenres.map(genre => genre.name);
         
             const videogameWithGenres = { ...videogame.dataValues, genres: genreNames };
-        
+            
+            console.log('dtetectet UUID:', videogameWithGenres);
             return videogameWithGenres;
         }
 
         const response = await axios(`${APIURL}/${id}?key=${KEY}`);
         return response.data;
+
 
     } catch (error) {
         throw new Error(`gameDetailService.js has recieved an error: ${error.message}`);

@@ -1,8 +1,14 @@
 
 .form{
-background-color: rgb(15, 35, 124);
+background-color: #3a4052;
 content: '';
 width: 80%;
+margin: 30px;
+border-radius: 2em;
+}
+
+.form-content{
+  margin: 50px;
 }
 
 .header-field{
@@ -39,7 +45,22 @@ width: 80%;
     margin-right: 10%;
 }
 
-
+.platforms-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+}
+.submit-button{
+  display: flex;
+  justify-content: center;
+}
+.form-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px;
+}
 .fancy {
     background-color: transparent;
     border: 2px solid #cacaca;
@@ -51,7 +72,7 @@ width: 80%;
     margin: 0;
     outline: none;
    
-    padding: 8px 30px;
+    padding: 8px 100px;
     position: relative;
     text-align: center;
     text-decoration: none;
@@ -79,9 +100,9 @@ width: 80%;
   .fancy .text-post {
     font-size: 1.125em;
     line-height: 1.33333em;
-    padding-left: 2em;
+    padding-right: 2em;
     display: block;
-    text-align: left;
+    text-align: center;
     transition: all 0.3s ease-in-out;
     text-transform: lowercase;
     text-decoration: none;

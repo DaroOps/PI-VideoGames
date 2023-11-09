@@ -124,7 +124,7 @@ const reducer = (state = initialState, action) => {
                 filtered: orderedGamesR
             }
         case ORIGIN:
-            // Filtrar por origen
+            // const filterByorygin = action.payload === ? games.map(game=> game.bd?)
             return {
                 ...state,
                 selectedOrigin: action.payload,

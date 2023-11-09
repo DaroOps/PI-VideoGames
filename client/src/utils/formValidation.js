@@ -1,10 +1,39 @@
 const formValidation = (form) => {
 
     const errors = {};
+    if (!form.name.trim()) {
+        errors.name = "Name is required.";
+    }
+
+    if (!form.image.trim()) {
+        errors.image = "Image URL is required.";
+    }
+
+    if (!form.description.trim()) {
+        errors.description = "Description is required.";
+    }
+
+    if (!form.platforms.trim()) {
+        errors.platforms = "Platforms are required.";
+    }
+
+    if (!form.releasedate.trim()) {
+        errors.releasedate = "Release date is required.";
+    }
+
+    if (!form.rating.trim()) {
+        errors.rating = "Rating is required.";
+    }
+
+    if (!Array.isArray(form.genres) || form.genres.length === 0) {
+        errors.genres = "At least one genre is required.";
+    }
 
     if (!/^.{1,100}$/.test(form.name)) {
         errors.name = "Name must be between 1 and 100 characters.";
     }
+
+
 
     if (
         !/^https?:\/\/.*\.(jpg|jpeg|png)$/i.test(form.image)
