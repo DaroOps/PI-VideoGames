@@ -4,15 +4,22 @@ import './PageSelector.modules.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { setPage } from '../../redux/actions/actions';
 
-const PageSelector = ({totalOfElements = 857351, maximumAdmited = 857351}) => {
-    const maxAdmited = Math.ceil(maximumAdmited/20);
+const PageSelector = ({ totalOfElements = 857351, next, prev, }) => {
     const firstPage = 1;
-    const lastPage = Math.ceil(totalOfElements/20)
-    const pageSize = 5;
-    
+    const lastPage = Math.ceil(totalOfElements / 20);
+    let pageSize = 5;
+
+    const difference = lastPage - firstPage;
+
+    if (difference >= 1 && difference <= 3) {
+        pageSize = difference + 1;
+    } else if (difference === 0) {
+        pageSize = 1;
+    }
+
     const dispatch = useDispatch();
 
-   
+
     const actualStorage = useSelector(state => state.page);
 
 
@@ -20,15 +27,19 @@ const PageSelector = ({totalOfElements = 857351, maximumAdmited = 857351}) => {
 
     const handlePageChange = (newPage) => {
         if (newPage >= firstPage && newPage <= lastPage) {
-           
+
             setActual(newPage);
         }
     };
 
-    useEffect(()=>{
+    useEffect(() => {
         dispatch(setPage(actual));
-    },[actual])
-    
+        
+    }, [actual])
+
+    useEffect(()=>{
+        setActual(actualStorage);
+    },[actualStorage])
 
     const renderPageButton = (page) => {
         return (
@@ -42,23 +53,23 @@ const PageSelector = ({totalOfElements = 857351, maximumAdmited = 857351}) => {
             </button>
         );
     };
- 
-    
+
+
 
     const renderPageRange = () => {
         let start = Math.max(firstPage, actual - Math.floor(pageSize / 2));
         const end = Math.min(lastPage, start + pageSize - 1);
         const pages = [];
 
-    
+
         if (end - start < pageSize) {
             start = Math.max(firstPage, end - pageSize + 1);
         }
 
         for (let i = 1; i <= pageSize; i++) {
             const page = start + i - 1;
-            
-            if(firstPage===lastPage ){
+
+            if (firstPage === lastPage) {
                 pages.push(firstPage);
                 break;
             }
@@ -91,7 +102,7 @@ const PageSelector = ({totalOfElements = 857351, maximumAdmited = 857351}) => {
                 <li>
                     <button
                         name="prev"
-                        className={`prev ${actual === firstPage ? 'disabled' : ''}`}
+                        className={`prev ${prev ? 'disabled' : ''}`}
                         title="previous page"
                         onClick={() => handlePageChange(actual - 1)}
                     >
@@ -102,7 +113,7 @@ const PageSelector = ({totalOfElements = 857351, maximumAdmited = 857351}) => {
                 <li>
                     <button
                         name="next"
-                        className={`next ${actual === maxAdmited ? 'disabled' : ''}`}
+                        className={`next ${next ? 'disabled' : ''}`}
                         title="next page"
                         onClick={() => handlePageChange(actual + 1)}
                     >

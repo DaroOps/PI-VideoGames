@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './Game.modules.css';
 const Game = (props) => {
 
-
     return (
         <div className='card-holder'>
             <Link to={`/detail/${props.id}`} style={{ textDecoration: "none" }}>

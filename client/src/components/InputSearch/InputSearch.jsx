@@ -1,13 +1,17 @@
-import { useRef, useEffect } from 'react';
 import './InputSearch.modules.css'
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchQuery } from '../../redux/actions/actions';
 
-const InputSearch = ({ onSearch, searchValue, setSearchValue }) => {
-    const inputRef = useRef(null);
+const InputSearch = () => {
+    const query =useSelector(state => state.searchQuery);
+    const dispatch = useDispatch();
+    const [searchValue, setSearchValue] = useState(query);
+
 
     const handleSearch = (event) => {
         event.preventDefault();
-     
-        onSearch(searchValue);
+        dispatch(setSearchQuery(searchValue));
     }
 
     const handleChange = (event) => {
@@ -15,16 +19,11 @@ const InputSearch = ({ onSearch, searchValue, setSearchValue }) => {
         setSearchValue(updatedValue);
     }
 
-    useEffect(() => {
-        if (inputRef.current) {
-            inputRef.current.focus();
-        }
-    }, [searchValue]);
+   
 
     return (
         <div className="search">
             <input 
-                ref={inputRef}
                 name='search'
                 placeholder="Search Games..."
                 type="text"

@@ -1,30 +1,20 @@
-import flattenArray from '../../utils/flattenArray';
-import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH, INCREASE_TARGET_PAGE } from './types'
+import { SET_PAGE, GET_GAMES, GET_GENRES, FILTER, ORDER, ORDER_RATING, ORIGIN, SEARCH, INCREASE_TARGET_PAGE, SET_SEARCH_QUERY, SET_SEARCH_STATE } from './types'
 import axios from 'axios'
 
 
-const getGames = (page, target = 10, games = []) => {
+const getGames = (page) => {
    const endpoint = `http://localhost:3001/videogames/page/`;
 
-   let stackGames = [...games];
 
    return async (dispatch) => {
       try {
-         const requests = [];
-         for (let i = page; i <= target; i++) {
-            requests.push(axios.get(endpoint + i));
-         }
+         const { data } = await axios(endpoint + page);
 
-         const responses = await Promise.all(requests);
-
-         stackGames = responses.map((response) => response.data); // Mapear las respuestas a los datos.
-
-         stackGames = flattenArray(stackGames);
-
+         console.log('response', data)
 
          return dispatch({
             type: GET_GAMES,
-            payload: stackGames,
+            payload: data,
          });
       } catch (error) {
          throw Error(error.message);
@@ -63,12 +53,30 @@ const setPage = (page) => {
 }
 
 const setFilters = (genders) => {
-   return (dispatch) => {
+   return async (dispatch) => {
       return dispatch({
          type: FILTER,
          payload: genders
       });
    }
+}
+
+const setSearchQuery = (searchQuery) => {
+   return async (dispatch) => {
+      return dispatch({
+         type: SET_SEARCH_QUERY,
+         payload: searchQuery
+      });
+   };
+}
+
+const setSearchState = (state) => {
+   return async (dispatch) => {
+      return dispatch({
+         type: SET_SEARCH_STATE,
+         payload: state
+      });
+   };
 }
 
 const order = (order) => {
@@ -85,35 +93,31 @@ const orderRating = (rating) => {
 }
 
 const selectOrigin = (origin) => {
-
    return {
       type: ORIGIN,
       payload: origin
    }
 }
 
-const searchGame = (game) => {
+const searchGame = (game, page) => {
    const endpoint = `http://localhost:3001/videogames/search?name=`;
 
    return async (dispatch) => {
       try {
-         if (!game) {
-            dispatch({
-               type: SEARCH,
-               payload: []
-            });
-         } else {
-            const { data } = await axios.get(endpoint + game);
-            dispatch({
-               type: SEARCH,
-               payload: data
-            });
-         }
-      } catch (error) {
+
+         const { data } = await axios.get(endpoint + game + "&page=" + page);
+         dispatch({
+            type: SEARCH,
+            payload: data,
+            status: true
+         });
+      }
+      catch (error) {
          throw Error(error.message);
       }
    };
 };
+
 
 
 const increaseTargetPage = () => {
@@ -136,5 +140,7 @@ export {
    orderRating,
    selectOrigin,
    searchGame,
-   increaseTargetPage
+   increaseTargetPage,
+   setSearchQuery,
+   setSearchState
 }

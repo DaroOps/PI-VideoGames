@@ -26,7 +26,7 @@ const Detail = () => {
 
     return (
         <div>
-            <img className="detail-background" src="https://wallpapercave.com/wp/wp6358805.png"></img>
+           
             <div className="spacer"></div>
             <div className="flex-info">
 

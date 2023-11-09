@@ -1,24 +1,14 @@
 import Game from "../Game/Game";
-import FilterMenu from '../FilterMenu/FilterMenu';
-
-import './GamesContainer.modules.css';
 import generateUUID from "../../utils/generateUUID";
 
-const GamesContainer = ({ page , games}) => {
+import './GamesContainer.modules.css';
 
-    const gamesPerPage = 20;
- 
-    const startIndex = (page-1) * gamesPerPage;
-    const endIndex = startIndex + gamesPerPage;
-
-    const displayedGames = games.slice(startIndex, endIndex);
-
+const GamesContainer = ({games}) => {
     return (
         <div className="master-card-container">
-            <FilterMenu />
             <div className='games-container-flex'>
 
-                {displayedGames.map(game => {
+                {games?.map(game => {
                     return (<Game
                         key={generateUUID()}
                         id={game.id}

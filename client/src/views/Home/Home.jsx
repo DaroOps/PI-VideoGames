@@ -3,86 +3,95 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 // Redux Actions Imports
-import { getGames, getGenres, increaseTargetPage, setPage } from "../../redux/actions/actions";
+import { getGames, getGenres, increaseTargetPage, searchGame, setPage, setSearchState } from "../../redux/actions/actions";
 
 // Component Imports
 import GamesContainer from "../../components/GamesContainer/GamesContainer";
 import PageSelector from "../../components/PageSelector/PageSelector";
+import FilterMenu from "../../components/FilterMenu/FilterMenu";
+
+import './Home.modules.css'
+import EmptyState from "../../components/EmptyState/EmptyState";
 
 const Home = () => {
 
-    const search = useSelector(state => state.search)
+    const isSearching = useSelector(state => state.isSearching)
     const games = useSelector(state => state.games);
+
+    const next = useSelector(state => state.next);
+    const previous = useSelector(state => state.previous);
+    const count = useSelector(state => state.gamesCount);
+
     const filtered = useSelector(state => state.filtered);
-    const targetPage = useSelector(state => state.targetPage);
+    const searchQuery = useSelector(state => state.searchQuery);
+    const lastSearch = useSelector(state => state.lastSearchQuery);
     const page = useSelector(state => state.page);
     const genres = useSelector(state => state.genres);
 
     const dispatch = useDispatch();
 
-    const [dataProvider, setDataProvider] = useState(games);
-
 
     useEffect(() => {
-        if (filtered.length > 0 && search.length > 0) {
-            setDataProvider(filtered);
-            dispatch(setPage(1));
-        }
-
-        if (filtered.length > 0 && search.length == 0 && games.length > 0) {
-            setDataProvider(filtered);
-            dispatch(setPage(1));
-        }
-
-
-        if (search.length == 0 && filtered.length == 0 && games.length > 0) {
-            setDataProvider(games);
-            dispatch(setPage(1));
-        }
-
-        if (search.length > 0 && filtered.length == 0 && games.length > 0) {
-            setDataProvider(search);
-            dispatch(setPage(1));
-        }
-
-        if (genres.length===0) {
+        if (genres.length === 0) {
             dispatch(getGenres())
         }
-
-        
-        console.log('dataprovider',dataProvider);
-
+        if (!games) {
+            dispatch(setPage(1));
+            dispatch(getGames(page));
+        }
+        if (searchQuery == '' && isSearching) {
+            dispatch(setSearchState(false));
+            dispatch(setPage(1));
+        }
     }, []);
 
-
     useEffect(() => {
-        if (page == targetPage) {
-            dispatch(increaseTargetPage());
+        if (!isSearching) {
+            dispatch(getGames(page))
         }
-    }, [page])
+
+    }, [page, isSearching]);
 
     useEffect(() => {
-        if(dataProvider == games){
-            dispatch(getGames(page, targetPage, games));
+        if (searchQuery == '' && isSearching) {
+            dispatch(setSearchState(false));
+            dispatch(setPage(1));
         }
-    }, [targetPage])
 
-    useEffect(() => {
-        
-    }, [])
+        if (searchQuery) {
+            if (searchQuery !== lastSearch && lastSearch !== "" && searchQuery !== "") {
+                dispatch(searchGame(searchQuery, page));
+                dispatch(setPage(1));
+            }
+            else {
+                if(!isSearching){
+                    dispatch(setSearchState(true));
+                    dispatch(setPage(1));
+                }
+                dispatch(searchGame(searchQuery, page));
+            }
+        }
 
-
-
+    }, [searchQuery, page]);
 
     return (
         <div>
-            <GamesContainer page={page} games={games} />
-            <PageSelector
-                totalOfElements={filtered.length > 0 ? filtered.length : targetPage * 20}
-                maximumAdmited={dataProvider.length}
-            />
+            <div className="home">
+                <FilterMenu />
+                {filtered.length > 0 && filtered[0] === "not-found" ? (
+                    <EmptyState />
+                ) : (
+                    <div className="games-cc-cc-cc">
+                    <GamesContainer games={filtered.length > 0 ? filtered : games} />
+                    </div>
+                )}
+            </div>
+
+            <PageSelector totalOfElements={count} next={next} prev={previous} />
+
         </div>
     );
+
 }
 
 export default Home;
