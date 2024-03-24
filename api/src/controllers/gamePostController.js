@@ -2,16 +2,16 @@ const { postGame } = require("../services/gamePostService");
 const catchedAsync = require("../utils/catchedAsync");
 
 const gamePostController = catchedAsync(async(req, res)=>{
-    const {name, description, platforms, image, releasedate, genres}=req.body;
+    const {name, description, platforms, image, releasedate, genres, rating}=req.body;
 
-    const postedGame = await postGame(name, description, platforms, image, releasedate, genres);
-    console.log('POSTED GAME:' ,postedGame)
-    if(postedGame){
+    const postedGame = await postGame(name, description, platforms, image, releasedate, genres, rating);
+   
+    if(postedGame && Object.keys(postedGame).length > 0){
 
-        return res.status(200).json(postedGame)
+        return res.status(201).json(postedGame)
     }
     else{
-        return res.status(401).json({message:"can't post videogame"})
+        return res.status(400).json({error:"can't post videogame"})
     }
 });
 

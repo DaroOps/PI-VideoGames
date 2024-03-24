@@ -1,0 +1,28 @@
+.nav-bar{
+    background-color: #3a4052;
+    height: 50px;
+    position: static;
+    display: flex;
+    text-align: center;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.link-buttons{
+    
+    background-color: aliceblue;
+    margin-left: 20px;
+    margin-right: 20px ;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 3px;
+    border-radius: 0.5em;
+    border: 1px solid rgba(56, 56, 56, 0.575) ;
+}
+
+.link-buttons:hover{
+    background-color: #191c24;
+   font-weight: bold;
+    color: white;
+}

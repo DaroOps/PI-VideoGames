@@ -1,0 +1,60 @@
+.input-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width: 350px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.input-area label {
+    position: relative;
+    width: 100%;
+   
+}
+
+.input-area label .input-area-cc {
+    width: 100%;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 5px;
+}
+
+.input-area label .input-area-cc+span {
+    position: absolute;
+    left: 10px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.input-area label .input-area-cc+span {
+    top: 35%;
+    font-size: 0.9em;
+}
+ .input-area textarea {
+    resize:none;
+    padding: 9px;
+ }
+.input-area label .input-area-cc:focus+span,
+.input-area label .input-area-cc.valid+span,
+.input-area label .input-area-cc.invalid+span{
+   
+    top: 67px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+
+.input-area label .input-area-cc.valid+span {
+    color: rgb(95, 190, 95);
+}
+.input-area label .input-area-cc.invalid+span {
+    color: rgb(128, 0, 11);
+}
+
+

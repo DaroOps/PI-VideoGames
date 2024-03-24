@@ -1,0 +1,20 @@
+.master-card-container{
+	display: flex;
+	flex-direction: row;
+	
+}
+.games-container-flex{
+    background: #3f3e3e; 
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	align-items: baseline;
+	width: 100%;
+	
+	
+};
+
+
+
+

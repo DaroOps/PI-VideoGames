@@ -1,28 +1,39 @@
 const axios = require("axios");
 
-const {Videogames} = require('../db')
+const { Videogames } = require('../db')
 
 const { KEY } = require('../config/envs');
-const catchedAsync = require("../utils/catchedAsync");
+
 const isValidUUID = require("../utils/isValidUUID");
 
-const APIURL= 'https://api.rawg.io/api/games';
+const APIURL = 'https://api.rawg.io/api/games';
 
-const getGameDetail = async (id) =>{
+const getGameDetail = async (id) => {
     const isUUID = isValidUUID(id);
+    try {
+        if (isUUID) {
+            const videogame = await Videogames.findOne({ where: { id: id } });
+            const gamegenres = await videogame.getGenres();
+        
+            const genreNames = gamegenres.map(genre => genre.name);
+        
+            const videogameWithGenres = { ...videogame.dataValues, genres: genreNames };
+            
+            console.log('dtetectet UUID:', videogameWithGenres);
+            return videogameWithGenres;
+        }
 
-    if(isUUID){
-       const [videogames] = await Videogames.findOne({ where: { id: id } });
-
-       return videogames;
-    }
-    else{
         const response = await axios(`${APIURL}/${id}?key=${KEY}`);
         return response.data;
-    }   
+
+
+    } catch (error) {
+        throw new Error(`gameDetailService.js has recieved an error: ${error.message}`);
+    }
+
 }
 
-module.exports= {
-     getGameDetail
+module.exports = {
+    getGameDetail
 }
 

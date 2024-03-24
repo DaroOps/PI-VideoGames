@@ -1,0 +1,65 @@
+.input-field {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    max-width:  350px;
+    
+    padding-bottom: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.input-field label {
+    position: relative;
+    width: 100%;
+   
+   
+}
+
+.input-field label .input-cc {
+    width: 100%;
+    text-overflow: ellipsis;
+    padding-bottom: 7px;
+    padding-top: 7px;
+    outline: 0;
+    border: 1px solid rgba(105, 105, 105, 0.397);
+    border-radius: 5px;
+   
+}
+
+.input-field label .input-cc+span {
+    position: absolute;
+    left: 10px;
+    color: grey;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+    
+}
+
+.input-field label .input-cc+span {
+    top: 7px;
+    font-size: 0.9em;
+}
+
+.input-field label .input-cc:focus+span,
+.input-field label .input-cc.valid+span{
+    top:36px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.input-cc{
+    padding: 10px;
+}
+
+
+.input-field label .input-cc.valid+span {
+    color: rgb(95, 190, 95);
+}
+.input-field label .input-cc.invalid+span {
+    top:30px;
+    color: rgb(214, 69, 81);
+}
+
+
